@@ -19,9 +19,10 @@ app.post("/send-mail", async (req, res) => {
       }
     });
 
-    await transporter.sendMail({
-      from: email,
-      to: "kukku4671@gmail.com",
+     await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_USER,
+      replyTo: email,
       subject: "New Contact Form Message",
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
     });
@@ -37,4 +38,5 @@ app.post("/send-mail", async (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log("Server running on port " + PORT));
+
 
